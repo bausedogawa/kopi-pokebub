@@ -1,21 +1,38 @@
-// Toggle class active
+/* =========================
+   NAVBAR: HAMBURGER MENU
+========================= */
+
 const navbarNav = document.querySelector(".navbar-nav");
+const hamburgerMenu = document.querySelector("#hamburger-menu");
 
-// ketika hamburger menu diklik
-document.querySelector("#hamburger-menu").onclick = () => {
+hamburgerMenu.addEventListener("click", (e) => {
+  e.preventDefault();
+  e.stopPropagation();
   navbarNav.classList.toggle("active");
-};
+});
 
-//toggle search form
+/* =========================
+   SEARCH FORM
+========================= */
+
 const searchForm = document.querySelector(".search-form");
 const searchBox = document.querySelector("#search-box");
-document.querySelector("#search-button").onclick = (e) => {
-  searchForm.classList.toggle("active");
-  searchBox.focus();
-  e.preventDefault();
-};
+const searchButton = document.querySelector("#search-button");
 
-// toggle shopping cart class active
+searchButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+
+  searchForm.classList.toggle("active");
+
+  if (searchForm.classList.contains("active")) {
+    searchBox.focus();
+  }
+});
+
+/* =========================
+   SHOPPING CART: NAVBAR
+========================= */
 
 const shoppingCart = document.querySelector(".shopping-cart");
 const shoppingCartButton = document.querySelector("#shopping-cart-button");
@@ -23,79 +40,81 @@ const shoppingCartButton = document.querySelector("#shopping-cart-button");
 shoppingCartButton.addEventListener("click", (e) => {
   e.preventDefault();
   e.stopPropagation();
+
   shoppingCart.classList.toggle("active");
 });
 
-// klik di luar sidebar, untuk menghilangkan nav
+/* =========================
+   MENUTUP MENU SAAT KLIK DI LUAR
+========================= */
 
-const hm = document.querySelector("#hamburger-menu");
-const sb = document.querySelector("#search-button");
-const sc = document.querySelector("#shopping-cart-button");
-
-document.addEventListener("click", function (e) {
-  if (!hm.contains(e.target) && !navbarNav.contains(e.target)) {
+document.addEventListener("click", (e) => {
+  if (!hamburgerMenu.contains(e.target) && !navbarNav.contains(e.target)) {
     navbarNav.classList.remove("active");
   }
 
-  if (!sb.contains(e.target) && !searchForm.contains(e.target)) {
+  if (!searchButton.contains(e.target) && !searchForm.contains(e.target)) {
     searchForm.classList.remove("active");
   }
 
-  if (!sc.contains(e.target) && !shoppingCart.contains(e.target)) {
+  if (
+    !shoppingCartButton.contains(e.target) &&
+    !shoppingCart.contains(e.target)
+  ) {
     shoppingCart.classList.remove("active");
   }
 });
 
-// Modal box
+/* =========================
+   MODAL DETAIL PRODUK
+========================= */
+
 const itemDetailModal = document.querySelector("#item-detail-modal");
 const itemDetailButtons = document.querySelectorAll(".item-detail-button");
 const closeModal = document.querySelector(".modal .close-icon");
 
-// Ambil elemen di dalam modal
 const modalImage = document.querySelector(".modal-content > img");
 const modalTitle = document.querySelector(".modal-content .product-content h3");
 const modalPrice = document.querySelector(".modal-content .product-price");
 
-// Klik tombol mata pada setiap produk
 itemDetailButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
     e.preventDefault();
 
-    // Ambil kartu produk yang tombolnya diklik
     const productCard = button.closest(".product-card");
 
-    // Ambil data dari kartu produk
-    const productName = productCard.querySelector(".product-title").textContent;
+    if (!productCard) return;
+
+    const productName = productCard
+      .querySelector(".product-title")
+      .textContent.trim();
+
     const productImage = productCard
       .querySelector(".product-img img")
       .getAttribute("src");
+
     const productPrice = productCard.querySelector(".product-price").innerHTML;
 
-    // Masukkan data ke modal
     modalTitle.textContent = productName;
     modalImage.src = productImage;
     modalImage.alt = productName;
     modalPrice.innerHTML = productPrice;
 
-    // Tampilkan modal
     itemDetailModal.style.display = "flex";
   });
 });
 
-// Tutup modal dengan tombol X
 closeModal.addEventListener("click", (e) => {
   e.preventDefault();
   itemDetailModal.style.display = "none";
 });
 
-// Tutup modal ketika area gelap diklik
 itemDetailModal.addEventListener("click", (e) => {
   if (e.target === itemDetailModal) {
     itemDetailModal.style.display = "none";
   }
 });
 
-// Tutup modal dengan tombol Escape
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     itemDetailModal.style.display = "none";
@@ -115,19 +134,22 @@ const cartButtons = document.querySelectorAll(
 
 let cartItems = [];
 
-// Mengubah angka harga menjadi format IDR
+/* FORMAT HARGA */
+
 function formatRupiah(number) {
   return "IDR " + number.toLocaleString("id-ID") + "K";
 }
 
-// Mengambil angka harga dari HTML, misalnya IDR 50K menjadi 50
+/* AMBIL ANGKA HARGA DARI HTML */
+
 function getPrice(priceText) {
   const match = priceText.match(/IDR\s*([\d.]+)\s*K/i);
 
   return match ? Number(match[1].replace(/\./g, "")) : 0;
 }
 
-// Menampilkan isi keranjang dan menghitung total harga
+/* TAMPILKAN ISI KERANJANG */
+
 function renderCart() {
   if (!cartItemsContainer || !cartTotalElement) return;
 
@@ -164,6 +186,7 @@ function renderCart() {
 
     detail.append(title, price);
     cartItem.append(image, detail, removeButton);
+
     cartItemsContainer.appendChild(cartItem);
   });
 
@@ -174,16 +197,22 @@ function renderCart() {
 
   cartTotalElement.textContent = formatRupiah(total);
 
-  // Perbarui ikon Feather jika tersedia
   if (window.feather) {
     feather.replace();
   }
 }
 
-// Menambahkan produk ke keranjang
+/* =========================
+   TAMBAHKAN PRODUK KE KERANJANG
+   SEKALIGUS BUKA PANEL NAVBAR
+========================= */
+
 cartButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
+
+    // Buka panel shopping cart di sebelah kanan navbar
+    shoppingCart.classList.add("active");
 
     const card = button.closest(".product-card");
 
@@ -197,7 +226,7 @@ cartButtons.forEach((button) => {
 
     const price = getPrice(priceText);
 
-    // Cek apakah produk sudah ada di keranjang
+    // Jika produk sudah ada, tambah jumlahnya
     const existingItem = cartItems.find((item) => item.name === name);
 
     if (existingItem) {
@@ -215,5 +244,27 @@ cartButtons.forEach((button) => {
   });
 });
 
-// Tampilkan total awal
+/* =========================
+   TAMPILKAN TOTAL AWAL
+========================= */
+
 renderCart();
+
+/* =========================
+   TOMBOL ORDER NOW
+   NAVIGASI KE PRODUCTS
+========================= */
+
+const orderButton = document.querySelector(".hero .cta");
+const productsSection = document.querySelector("#products");
+
+if (orderButton && productsSection) {
+  orderButton.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    productsSection.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  });
+}
