@@ -443,6 +443,127 @@ footer {
   text-align: center;
   padding: 1rem;
 }
+
+/* modal box */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  overflow: auto;
+}
+
+.modal-container {
+  background-color: #fefefe;
+  color: var(--bg);
+  margin: 15% auto;
+  border: 1px solid #888;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  max-width: 500px;
+  width: 80%;
+  position: relative;
+}
+
+.modal-container .close-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  color: var(--bg);
+  cursor: pointer;
+}
+.modal-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.modal-content img {
+  width: 250px;
+  height: auto;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.modal-content .product-content {
+  flex: 1;
+  min-width: 0;
+}
+.modal-content .product-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.product-content h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+.product-content p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: grey;
+}
+
+.product-content .product-stars .star-rating {
+  fill: var(--primary);
+  stroke: var(--primary);
+  stroke-width: 0;
+  margin-top: 1px;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.product-content .product-price {
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.product-content .product-price span {
+  font-size: 1.2rem;
+  text-decoration: line-through;
+  margin-top: 0.5rem;
+  color: #666;
+  margin-bottom: 0;
+}
+
+.product-content .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.4rem;
+  color: #fff;
+  background-color: var(--primary);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-top: 0;
+}
+
+.product-content .btn svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  stroke: currentColor;
+}
+.product-content .btn {
+  position: relative;
+  top: -10px;
+}
+
+/* item detail */
+
 /* media queries */
 
 /* Laptop */
@@ -518,6 +639,11 @@ footer {
   }
 }
 
+.modal-content {
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 /* Mobile */
 @media (max-width: 450px) {
   html {
@@ -532,4 +658,81 @@ footer {
       margin: 2rem 0;
     }
   }
+}
+
+/* modal box hp */
+
+/* Responsive Modal untuk HP */
+@media screen and (max-width: 600px) {
+  .modal {
+    padding: 1rem;
+    align-items: center;
+    overflow-y: auto;
+  }
+
+  .modal-container {
+    width: 100%;
+    max-width: 400px;
+    max-height: 90vh;
+    margin: auto;
+    padding: 1.5rem;
+    overflow-y: auto;
+  }
+
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .modal-content img {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    flex-shrink: 1;
+    object-fit: contain;
+  }
+
+  .modal-content .product-content {
+    width: 100%;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .modal-content .product-content h3 {
+    font-size: 1.8rem;
+    line-height: 1.4;
+  }
+
+  .modal-content .product-content p {
+    font-size: 1.3rem;
+    line-height: 1.6;
+  }
+
+  .modal-content .product-price {
+    font-size: 1.6rem;
+  }
+
+  .modal-container .close-icon {
+    top: 0.5rem;
+    right: 0.8rem;
+    z-index: 2;
+  }
+}
+
+/* Contact: meratakan ikon dan tulisan */
+.contact-info a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Ukuran ikon Feather */
+.contact-info a svg {
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
 }

@@ -48,16 +48,15 @@
       <!-- search form end -->
 
       <!-- Shopping Cart start -->
+
+      <!-- Shopping Cart start -->
       <div class="shopping-cart">
-        <div class="cart-item">
-          <img src="img/products/1.jpg" alt="Product 1" />
-          <div class="item-detail">
-            <h3>Coffe Bean Charizard</h3>
-            <div class="item-price">IDR 50K</div>
-          </div>
-          <i data-feather="trash-2" class="remove-item"></i>
+        <div class="cart-items">
+          <!-- Produk yang dipilih akan muncul di sini -->
         </div>
+        <div class="cart-total">Total: <span id="cart-total">IDR 0</span></div>
       </div>
+      <!-- Shopping Cart end -->
 
       <!-- Shopping Cart end-->
     </nav>
@@ -173,7 +172,9 @@
           <div class="product-price">IDR 50K<span> IDR 100K</span></div>
           <div class="product-icon">
             <a href="#"><i data-feather="shopping-cart"></i></a>
-            <a href="#"><i data-feather="eye"></i></a>
+            <a href="#" class="item-detail-button"
+              ><i data-feather="eye"></i
+            ></a>
           </div>
         </div>
         <div class="product-card">
@@ -191,7 +192,9 @@
           <div class="product-price">IDR 50K<span> IDR 100K</span></div>
           <div class="product-icon">
             <a href="#"><i data-feather="shopping-cart"></i></a>
-            <a href="#"><i data-feather="eye"></i></a>
+            <a href="#" class="item-detail-button"
+              ><i data-feather="eye"></i
+            ></a>
           </div>
         </div>
         <div class="product-card">
@@ -209,7 +212,9 @@
           <div class="product-price">IDR 50K<span> IDR 100K</span></div>
           <div class="product-icon">
             <a href="#"><i data-feather="shopping-cart"></i></a>
-            <a href="#"><i data-feather="eye"></i></a>
+            <a href="#" class="item-detail-button"
+              ><i data-feather="eye"></i
+            ></a>
           </div>
         </div>
         <div class="product-card">
@@ -227,7 +232,9 @@
           <div class="product-price">IDR 125K<span> IDR 300K</span></div>
           <div class="product-icon">
             <a href="#"><i data-feather="shopping-cart"></i></a>
-            <a href="#"><i data-feather="eye"></i></a>
+            <a href="#" class="item-detail-button"
+              ><i data-feather="eye"></i
+            ></a>
           </div>
         </div>
       </div>
@@ -262,7 +269,7 @@
             Find us on Google Maps
           </a>
           <a
-            href="https://wa.me/6281234567890"
+            href="https://wa.me/+6281381945852"
             id="whatsapp"
             target="_blank"
             rel="noopener noreferrer"
@@ -282,6 +289,46 @@
         <p>&copy; 2023 Kopi Pokebub. All rights reserved.</p>
       </div>
     </footer>
+
+    <!-- Modal Box Item Details start -->
+
+    <!-- Modal Box Item Details start -->
+    <div class="modal" id="item-detail-modal">
+      <div class="modal-container">
+        <a href="#" class="close-icon">
+          <i data-feather="x"></i>
+        </a>
+
+        <div class="modal-content">
+          <img src="img/products/1.jpg" alt="Product 1" />
+
+          <div class="product-content">
+            <h3>Coffe Bean Charizard</h3>
+
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+              voluptatum, quod, quia, voluptates quae voluptatem quibusdam.
+            </p>
+
+            <div class="product-stars">
+              <i data-feather="star" class="star-rating"></i>
+              <i data-feather="star" class="star-rating"></i>
+              <i data-feather="star" class="star-rating"></i>
+              <i data-feather="star" class="star-rating"></i>
+              <i data-feather="star" class="star-rating"></i>
+            </div>
+
+            <div class="product-price">IDR 50K <span>IDR 100K</span></div>
+            <a href="#" class="btn">
+              <i data-feather="shopping-cart"></i> Add to Cart
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Box Item Details end -->
+
+    <!-- Modal Box Item Details end -->
 
     <!-- feather icons -->
     <script>
